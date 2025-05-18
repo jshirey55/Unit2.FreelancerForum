@@ -3,9 +3,9 @@
         { name: "Bob", price: 50, job: "Teacher" },
     ];
 
-    const carol = [
-        { name: "Carol", price: 70, job: "Programmer" },
-    ];
+    const carol = 
+        { name: "Carol", price: 70, job: "Programmer" }
+    
 
     const newFreelancers = [
         { name: "Dr. Slice", price: 25, job: "gardener" },
@@ -18,33 +18,29 @@
         { name: "Prof. Goose", price: 72, job: "driver" },
         ];
     
-
+    const addCarol = () => {
+        freelancers.push(carol)
+    }
+    
     const addFreelancer = () => {
         const newlancer = newFreelancers[Math.floor(Math.random() * newFreelancers.length)]
             freelancers.push(newlancer)
-
-            data()
 }
 
 function addTable() {
-    
     const root = document.querySelector("#root")
 
-    console.log(freelancers.length)
-
-    const totalPrice = freelancers.reduce((acc, freelancer) => acc + (freelancer.price),
-        0
-    )
-        const average = totalPrice / freelancers.length
-        console.log(average)
-    
     const h1 = document.createElement("h1")
     h1.innerHTML = "Freelancers"
     root.append(h1)
-
+    
     const h2 = document.createElement("h2")
-    h2.innerHTML = "The average starting price is $" + average
+    h2.innerHTML = "The average starting price is:"
     root.append(h2)
+
+    const h3 = document.createElement("h3")
+    h3.id = "average"
+    root.append(h3)
 
     const freelancerTable = document.createElement("table")
     const thead = document.createElement("thead")
@@ -60,12 +56,16 @@ function addTable() {
     freelancerTable.appendChild(tbody)
 
     root.appendChild(freelancerTable)
-
-    data()
 }
 
 function data() {
     const freelancerTable = document.querySelector("tbody")
+
+    const averageRoot = document.querySelector("#average")
+
+    const totalPrice = freelancers.reduce((acc, freelancer) => acc + freelancer.price, 0)
+    const average = totalPrice / freelancers.length
+    averageRoot.innerHTML = "$" + average.toFixed(2)
 
     const workerElements = freelancers.map((freelancer) => {
         const row = document.createElement("tr")
@@ -89,8 +89,13 @@ function data() {
 }
 
 
+function updateTable(){
+    addFreelancer()
+    data()
+}
+
 addTable()
+addCarol()
+data()
 
-//setInterval(addFreelancer, 1000)
-
-
+setInterval(updateTable, 1000)
