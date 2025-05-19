@@ -35,12 +35,8 @@ function addTable() {
     root.append(h1)
     
     const h2 = document.createElement("h2")
-    h2.innerHTML = "The average starting price is:"
+    h2.id = "average"
     root.append(h2)
-
-    const h3 = document.createElement("h3")
-    h3.id = "average"
-    root.append(h3)
 
     const freelancerTable = document.createElement("table")
     const thead = document.createElement("thead")
@@ -65,7 +61,7 @@ function data() {
 
     const totalPrice = freelancers.reduce((acc, freelancer) => acc + freelancer.price, 0)
     const average = totalPrice / freelancers.length
-    averageRoot.innerHTML = "$" + average.toFixed(2)
+    averageRoot.innerHTML = "The Average Starting Price is: $" + average.toFixed(2)
 
     const workerElements = freelancers.map((freelancer) => {
         const row = document.createElement("tr")
